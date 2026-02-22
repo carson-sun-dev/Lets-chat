@@ -1,54 +1,41 @@
 # Let's chat
 
-This template should help get you started developing with Vue 3 in Vite.
+A Vue 3 browser-side LLM chat app. The front end talks directly to a compatible chat API (e.g. DeepSeek or Groq) with no backend or database; conversations are stored in the browser via localStorage.
 
-## Recommended IDE Setup
+## Setup
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+1. **Install dependencies**
 
-## Recommended Browser Setup
+   ```sh
+   npm install
+   ```
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+2. **Configure API key**
 
-## Type Support for `.vue` Imports in TS
+   - Copy `.env.example` to `.env`.
+   - In `.env`, set `VITE_API_KEY` to your API key from [DeepSeek](https://platform.deepseek.com) or [Groq](https://console.groq.com).
+   - Do not commit `.env` (it is in `.gitignore`).
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+   Optional: set `VITE_API_BASE` (e.g. `https://api.groq.com`) and `VITE_CHAT_MODEL` if you use another provider. You can also open **Settings** (gear icon in the sidebar) and paste an API key there; it is stored only for the current tab (session).
 
-## Customize configuration
+3. **Run**
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+   ```sh
+   npm run dev
+   ```
 
-## Project Setup
+## Security note
 
-```sh
-pnpm install
-```
+The API key is read by the front end and will be present in the built JavaScript. This is acceptable for learning or portfolio use. For production, use a backend that holds the key and proxies requests to the LLM.
 
-### Compile and Hot-Reload for Development
+## Scripts
 
-```sh
-pnpm dev
-```
+- `npm run dev` – development server
+- `npm run build` – production build
+- `npm run preview` – preview production build
+- `npm run type-check` – TypeScript check
+- `npm run lint` – lint
 
-### Type-Check, Compile and Minify for Production
+## Docs
 
-```sh
-pnpm build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-pnpm test:unit
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-pnpm lint
-```
+- [API request/response example (stream)](./docs/api-example.md) – for Postman/cURL and implementation reference.
