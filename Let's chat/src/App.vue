@@ -6,6 +6,7 @@ import { useChatStore } from '@/stores/chat'
 const store = useChatStore()
 
 function applyTheme(): void {
+  if (typeof document === 'undefined') return
   const root = document.documentElement
   const mode = store.theme
   const isDark =
@@ -18,6 +19,7 @@ function applyTheme(): void {
   }
 }
 
+applyTheme()
 onMounted(() => {
   applyTheme()
   if (store.theme === 'system' && typeof window !== 'undefined') {

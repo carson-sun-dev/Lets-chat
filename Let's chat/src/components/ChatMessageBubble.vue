@@ -18,8 +18,12 @@ const html = computed(() => renderMarkdown(props.content))
     class="bubble-row bubble-row-assistant"
   >
     <div class="bubble-avatar bubble-avatar-assistant">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H6m12 0h1.5M4.5 16.5H6m12 0h1.5M8.25 21v-1.5M12 3a.75.75 0 01.75.75v.75h1.5v-.75A.75.75 0 0115 3h.75v1.5h1.5V3h.75a.75.75 0 01.75.75v.75h1.5v-.75A.75.75 0 0121 4.5h-.75v1.5h-1.5V4.5H18a.75.75 0 01-.75.75v.75h-1.5v-.75A.75.75 0 0015 4.5h-.75v1.5H12.75V4.5H12a.75.75 0 00-.75.75v.75h-1.5v-.75A.75.75 0 009 3h.75v1.5h1.5V3H12zM6 9.75a.75.75 0 01.75-.75h.75a.75.75 0 01.75.75v.75a.75.75 0 01-.75.75H6.75A.75.75 0 016 10.5v-.75zm9 0a.75.75 0 01.75-.75h.75a.75.75 0 01.75.75v.75a.75.75 0 01-.75.75h-.75a.75.75 0 01-.75-.75v-.75zM6 14.25a.75.75 0 01.75-.75h.75a.75.75 0 01.75.75v.75a.75.75 0 01-.75.75H6.75a.75.75 0 01-.75-.75v-.75zm9 0a.75.75 0 01.75-.75h.75a.75.75 0 01.75.75v.75a.75.75 0 01-.75.75h-.75a.75.75 0 01-.75-.75v-.75z" />
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2v1.5M12 20.5V22M6 6H4.5M19.5 6H18M6 18H4.5M19.5 18H18" />
+        <rect x="5" y="7" width="14" height="10" rx="2" />
+        <circle cx="9" cy="11.5" r="1.25" fill="currentColor" />
+        <circle cx="15" cy="11.5" r="1.25" fill="currentColor" />
+        <path d="M9 15.5h6" />
       </svg>
     </div>
     <div class="bubble bubble-assistant">
@@ -98,5 +102,10 @@ const html = computed(() => renderMarkdown(props.content))
   color: #1e1b4b;
   border: 1px solid #c7d2fe;
   border-bottom-left-radius: 0.25rem;
+}
+:root.dark .bubble-assistant {
+  background: #312e81;
+  color: #e0e7ff;
+  border-color: #4338ca;
 }
 </style>

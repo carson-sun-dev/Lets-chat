@@ -35,15 +35,15 @@ function saveToStorage(chats: Chat[], currentId: string | null): void {
 function loadSettings(): { selectedModel: string; theme: ThemeMode } {
   try {
     const raw = localStorage.getItem(SETTINGS_KEY)
-    if (!raw) return { selectedModel: GROQ_MODELS[0].id, theme: 'system' }
+    if (!raw) return { selectedModel: GROQ_MODELS[0].id, theme: 'light' }
     const parsed = JSON.parse(raw) as { selectedModel?: string; theme?: ThemeMode }
     const model = parsed.selectedModel && GROQ_MODELS.some((m) => m.id === parsed.selectedModel)
       ? parsed.selectedModel
       : GROQ_MODELS[0].id
-    const theme = ['light', 'dark', 'system'].includes(parsed.theme ?? '') ? parsed.theme! : 'system'
+    const theme = ['light', 'dark', 'system'].includes(parsed.theme ?? '') ? parsed.theme! : 'light'
     return { selectedModel: model, theme }
   } catch {
-    return { selectedModel: GROQ_MODELS[0].id, theme: 'system' }
+    return { selectedModel: GROQ_MODELS[0].id, theme: 'light' }
   }
 }
 

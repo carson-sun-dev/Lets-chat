@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref, computed, onMounted } from 'vue'
 import { useChatStore } from '@/stores/chat'
 import { storeToRefs } from 'pinia'
 import { GROQ_MODELS } from '@/types/chat'
@@ -6,6 +7,18 @@ import type { ThemeMode } from '@/types/chat'
 
 const store = useChatStore()
 const { chatsForList, currentChatId, filteredChats, sidebarOpen, selectedModel, theme } = storeToRefs(store)
+
+const systemPrefersDark = ref(false)
+onMounted(() => {
+  const m = window.matchMedia('(prefers-color-scheme: dark)')
+  systemPrefersDark.value = m.matches
+  m.addEventListener('change', () => {
+    systemPrefersDark.value = window.matchMedia('(prefers-color-scheme: dark)').matches
+  })
+})
+const effectiveDark = computed(
+  () => theme.value === 'dark' || (theme.value === 'system' && systemPrefersDark.value)
+)
 
 function cycleTheme(): void {
   const next: ThemeMode = theme.value === 'light' ? 'dark' : theme.value === 'dark' ? 'system' : 'light'
@@ -117,19 +130,14 @@ function confirmClear(): void {
         aria-label="Toggle theme"
         @click="cycleTheme()"
       >
-        <template v-if="theme === 'light'">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-          </svg>
-        </template>
-        <template v-else-if="theme === 'dark'">
+        <template v-if="effectiveDark">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
             <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
           </svg>
         </template>
         <template v-else>
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
           </svg>
         </template>
       </button>

@@ -49,6 +49,9 @@ watch([currentMessages, isTyping], scrollToBottom, { deep: true })
   flex-direction: column;
   gap: 1rem;
 }
+:root.dark .message-list {
+  background-color: #111827;
+}
 .empty-hint {
   flex: 1;
   display: flex;
@@ -56,6 +59,9 @@ watch([currentMessages, isTyping], scrollToBottom, { deep: true })
   justify-content: center;
   color: #6b7280;
   font-size: 0.875rem;
+}
+:root.dark .empty-hint {
+  color: #9ca3af;
 }
 .typing-indicator {
   display: flex;
@@ -65,6 +71,9 @@ watch([currentMessages, isTyping], scrollToBottom, { deep: true })
   border-radius: 1rem;
   background-color: #f3f4f6;
   border-bottom-left-radius: 0.25rem;
+}
+:root.dark .typing-indicator {
+  background-color: #1f2937;
 }
 .typing-dot {
   width: 0.5rem;
@@ -76,6 +85,9 @@ watch([currentMessages, isTyping], scrollToBottom, { deep: true })
 .typing-text {
   font-size: 0.875rem;
   color: #6b7280;
+}
+:root.dark .typing-text {
+  color: #9ca3af;
 }
 @keyframes pulse {
   0%, 100% { opacity: 1; }

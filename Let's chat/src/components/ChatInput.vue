@@ -50,6 +50,9 @@ function onKeydown(e: KeyboardEvent) {
   padding: 1rem;
   background-color: #fff;
 }
+:root.dark .input-bar-wrap {
+  background-color: #111827;
+}
 
 .input-bar {
   display: flex;
@@ -63,6 +66,10 @@ function onKeydown(e: KeyboardEvent) {
   border: 1px solid #e5e7eb;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 }
+:root.dark .input-bar {
+  background-color: #1f2937;
+  border-color: #374151;
+}
 
 .input-bar-textarea {
   flex: 1;
@@ -75,8 +82,14 @@ function onKeydown(e: KeyboardEvent) {
   color: #111827;
   outline: none;
 }
+:root.dark .input-bar-textarea {
+  color: #f9fafb;
+}
 .input-bar-textarea::placeholder {
   color: #9ca3af;
+}
+:root.dark .input-bar-textarea::placeholder {
+  color: #6b7280;
 }
 
 .input-bar-btn {

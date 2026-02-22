@@ -48,9 +48,12 @@ store.ensureCurrentChat()
   height: 100vh;
   width: 100vw;
   overflow: hidden;
-  background-color: var(--color-bg, #fff);
+  background-color: #fff;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
+}
+:root.dark .chat-layout {
+  background-color: #111827;
 }
 
 .sidebar-backdrop {
@@ -79,6 +82,9 @@ store.ensureCurrentChat()
   min-width: 0;
   background-color: #fff;
 }
+:root.dark .chat-main {
+  background-color: #111827;
+}
 
 .chat-header {
   display: flex;
@@ -89,6 +95,10 @@ store.ensureCurrentChat()
   border-bottom: 1px solid #e5e7eb;
   padding: 0 1rem;
   background-color: #fff;
+}
+:root.dark .chat-header {
+  border-color: #374151;
+  background-color: #111827;
 }
 
 .hamburger {
@@ -117,5 +127,8 @@ store.ensureCurrentChat()
   font-size: 0.875rem;
   font-weight: 500;
   color: #374151;
+}
+:root.dark .chat-title {
+  color: #e5e7eb;
 }
 </style>
