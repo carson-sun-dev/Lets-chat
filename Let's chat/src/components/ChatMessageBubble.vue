@@ -1,14 +1,10 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 import type { MessageRole } from '@/types/chat'
-import { renderMarkdown } from '@/utils/markdown'
 
-const props = defineProps<{
+defineProps<{
   role: MessageRole
   content: string
 }>()
-
-const html = computed(() => renderMarkdown(props.content))
 </script>
 
 <template>
@@ -27,11 +23,7 @@ const html = computed(() => renderMarkdown(props.content))
       </svg>
     </div>
     <div class="bubble bubble-assistant">
-      <div
-        v-if="content"
-        class="prose prose-sm max-w-none break-words"
-        v-html="html"
-      />
+      <p v-if="content" class="bubble-text whitespace-pre-wrap break-words">{{ content }}</p>
       <p v-else class="text-gray-500">...</p>
     </div>
   </div>
@@ -102,6 +94,9 @@ const html = computed(() => renderMarkdown(props.content))
   color: #1e1b4b;
   border: 1px solid #c7d2fe;
   border-bottom-left-radius: 0.25rem;
+}
+.bubble-text {
+  line-height: 1.6;
 }
 :root.dark .bubble-assistant {
   background: #312e81;
